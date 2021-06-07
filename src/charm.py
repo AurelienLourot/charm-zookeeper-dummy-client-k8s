@@ -41,12 +41,12 @@ class ZookeeperDummyClientK8SCharm(CharmBase):
 
     def __init__(self, *args):
         super().__init__(*args)
-        self.framework.observe(self.on.zookeeper_pebble_ready,
-                               self._on_zookeeper_pebble_ready)
+        self.framework.observe(self.on.ubuntu_pebble_ready,
+                               self._on_ubuntu_pebble_ready)
 
         self._stored.set_default(things=[])  # FIXME
 
-    def _on_zookeeper_pebble_ready(self, _):
+    def _on_ubuntu_pebble_ready(self, _):
         self.unit.status = ActiveStatus()
 
     @contextmanager

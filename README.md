@@ -24,20 +24,20 @@ $ juju add-relation zookeeper-k8s:client zookeeper-dummy-client-k8s:zookeeper
 
 ### Inspecting
 
-`FIXME`
-
 ```
 $ juju status
 Model        Controller  Cloud/Region        Version  SLA          Timestamp
 myzookeeper  micro       microk8s/localhost  2.9.0    unsupported  12:27:29Z
 
-App            Version  Status  Scale  Charm          Store     Channel  Rev  OS          Address  Message
-zookeeper-k8s           active      3  zookeeper-k8s  charmhub  stable     4  kubernetes
+App                         Version  Status  Scale  Charm                       Store     Channel  Rev  OS          Address  Message
+zookeeper-k8s                        active      3  zookeeper-k8s               charmhub  stable     4  kubernetes
+zookeeper-dummy-client-k8s           active      1  zookeeper-dummy-client-k8s  charmhub  stable     3  kubernetes
 
-Unit              Workload  Agent  Address    Ports  Message
-zookeeper-k8s/0   active    idle   10.1.0.47
-zookeeper-k8s/1*  active    idle   10.1.0.49
-zookeeper-k8s/2   active    idle   10.1.0.48
+Unit                           Workload  Agent  Address    Ports  Message
+zookeeper-k8s/0                active    idle   10.1.0.47
+zookeeper-k8s/1*               active    idle   10.1.0.49
+zookeeper-k8s/2                active    idle   10.1.0.48
+zookeeper-dummy-client-k8s/0*  active    idle   10.1.0.55
 ```
 
 ## Developing

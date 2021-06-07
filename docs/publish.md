@@ -4,16 +4,15 @@
 $ charmcraft pack
 $ charmcraft login
 $ charmcraft upload zookeeper-dummy-client-k8s.charm
-Revision 4 of 'zookeeper-dummy-client-k8s' created
-$ git tag rev004
+Revision 3 of 'zookeeper-dummy-client-k8s' created
+$ git tag rev003
 $ git push --tags
-$ charmcraft release zookeeper-dummy-client-k8s --revision=4 --channel=stable --resource=ubuntu-image:1
-$ charmcraft release zookeeper-dummy-client-k8s --revision=4 --channel=beta --resource=ubuntu-image:1
+$ charmcraft release zookeeper-dummy-client-k8s --revision=3 --channel=stable --resource=ubuntu-image:1
 $ charmcraft status zookeeper-dummy-client-k8s
 Track    Channel    Version    Revision    Resources
-latest   stable     4          4           ubuntu-image (r1)
+latest   stable     3          3           ubuntu-image (r1)
          candidate  ↑          ↑           ↑
-         beta       4          4           ubuntu-image (r1)
+         beta       ↑          ↑           ↑
          edge       ↑          ↑           ↑
 ```
 
