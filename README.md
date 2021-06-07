@@ -1,4 +1,4 @@
-# zookeeper-k8s
+# zookeeper-dummy-client-k8s
 
 [![Charmhub](https://img.shields.io/badge/Charmhub-orange)](https://charmhub.io/zookeeper-dummy-client-k8s)
 [![GitHub](https://img.shields.io/badge/GitHub-orange)](https://github.com/AurelienLourot/charm-zookeeper-dummy-client-k8s)

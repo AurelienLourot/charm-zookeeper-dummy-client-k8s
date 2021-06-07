@@ -27,6 +27,8 @@ import logging
 
 from contextlib import contextmanager
 
+from charms.zookeeper_k8s.v0.zookeeper import (
+    ZookeeperRelationCharmEvents, ZookeeperRequires)
 from kazoo.client import KazooClient
 from ops.charm import CharmBase
 from ops.framework import StoredState
@@ -37,27 +39,35 @@ logger = logging.getLogger(__name__)
 
 
 class ZookeeperDummyClientK8SCharm(CharmBase):
+    on = ZookeeperRelationCharmEvents()
     _stored = StoredState()
 
     def __init__(self, *args):
         super().__init__(*args)
-        self.framework.observe(self.on.ubuntu_pebble_ready,
-                               self._on_ubuntu_pebble_ready)
+        self.zookeeper = ZookeeperRequires(self, self._stored)
+        self.framework.observe(self.on.zookeeper_relation_updated,
+                               self._on_zookeeper_config_changed)
 
-        self._stored.set_default(things=[])  # FIXME
-
-    def _on_ubuntu_pebble_ready(self, _):
-        self.unit.status = ActiveStatus()
+    def _on_zookeeper_config_changed(self, _):
+        hosts = self.__known_zookeeper_hosts()
+        logging.debug(f'Known zookeeper hosts: {hosts}')
+        with self.__zookeeper_client(hosts) as _:
+            self.unit.status = ActiveStatus()
 
     @contextmanager
-    def __zookeeper_client(self):
-        client_port = self.config[self.__CLIENT_PORT_CONFIG_KEY]
-        zk = KazooClient(hosts='127.0.0.1:{}'.format(client_port))
+    def __zookeeper_client(self, hosts):
+        zk = KazooClient(hosts=hosts)
         zk.start()
         try:
             yield zk
         finally:
             zk.stop()
+
+    def __known_zookeeper_hosts(self):
+        """Return list of hosts to pass to the zookeeper client.
+        """
+        return ','.join(f'{address}:{self._stored.zookeeper_port}' for
+                        address in self._stored.zookeeper_addresses)
 
 
 if __name__ == "__main__":
