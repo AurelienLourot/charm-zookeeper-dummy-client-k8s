@@ -52,7 +52,7 @@ class ZookeeperDummyClientK8SCharm(CharmBase):
         hosts = self.__known_zookeeper_hosts()
         logging.debug(f'Known zookeeper hosts: {hosts}')
         with self.__zookeeper_client(hosts) as _:
-            self.unit.status = ActiveStatus()
+            self.unit.status = ActiveStatus(f'Connected to {hosts}')
 
     @contextmanager
     def __zookeeper_client(self, hosts):
