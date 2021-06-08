@@ -18,7 +18,7 @@ sidecar container containing the Juju operator logic.
 ```
 $ juju add-model myzookeeper
 $ juju deploy zookeeper-k8s -n 3
-$ juju deploy zookeeper-dummy-client k8s
+$ juju deploy zookeeper-dummy-client-k8s
 $ juju add-relation zookeeper-k8s:client zookeeper-dummy-client-k8s:zookeeper
 ```
 
