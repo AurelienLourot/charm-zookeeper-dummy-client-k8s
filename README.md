@@ -30,14 +30,14 @@ Model        Controller  Cloud/Region        Version  SLA          Timestamp
 myzookeeper  micro       microk8s/localhost  2.9.0    unsupported  12:27:29Z
 
 App                         Version  Status  Scale  Charm                       Store     Channel  Rev  OS          Address  Message
-zookeeper-k8s                        active      3  zookeeper-k8s               charmhub  stable     4  kubernetes           Connected to 10.1.0.47:2181,10.1.0.48:2181,10.1.0.49:2181
-zookeeper-dummy-client-k8s           active      1  zookeeper-dummy-client-k8s  charmhub  stable     3  kubernetes
+zookeeper-k8s                        active      3  zookeeper-k8s               charmhub  stable     4  kubernetes
+zookeeper-dummy-client-k8s           active      1  zookeeper-dummy-client-k8s  charmhub  stable     3  kubernetes           Connected to 10.1.0.47:2181,10.1.0.48:2181,10.1.0.49:2181
 
 Unit                           Workload  Agent  Address    Ports  Message
-zookeeper-k8s/0                active    idle   10.1.0.47         Connected to 10.1.0.47:2181,10.1.0.48:2181,10.1.0.49:2181
+zookeeper-k8s/0                active    idle   10.1.0.47
 zookeeper-k8s/1*               active    idle   10.1.0.49
 zookeeper-k8s/2                active    idle   10.1.0.48
-zookeeper-dummy-client-k8s/0*  active    idle   10.1.0.55
+zookeeper-dummy-client-k8s/0*  active    idle   10.1.0.55         Connected to 10.1.0.47:2181,10.1.0.48:2181,10.1.0.49:2181
 ```
 
 ## Developing
